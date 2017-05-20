@@ -1,0 +1,35 @@
+- name: Install xz-utils
+  apt: name=xz-utils state=latest
+
+- name: Download Node.js
+  get_url:
+    url: https://nodejs.org/dist/v{{ node_version }}/node-v{{ node_version }}-linux-x64.tar.xz
+    dest: /home/{{ admin_user }}/node-v{{ node_version }}-linux-x64.tar.xz
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
+    mode: 0750
+  register: node_download
+
+- name: Extract Node.js
+  unarchive:
+    remote_src: yes
+    src: /home/{{ admin_user }}/node-v{{ node_version }}-linux-x64.tar.xz
+    dest: /home/{{ admin_user }}
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
+  when: node_download.changed
+
+- name: Create symbolic link to node
+  file:
+    src: /home/{{ admin_user }}/node-v{{ node_version }}-linux-x64/bin/node
+    dest: /usr/local/bin/node
+    state: link
+
+- name: Create symbolic link to npm
+  file:
+    src: /home/{{ admin_user }}/node-v{{ node_version }}-linux-x64/bin/npm
+    dest: /usr/local/bin/npm
+    state: link
+
+- name: Install Git
+  apt: name=git state=latest

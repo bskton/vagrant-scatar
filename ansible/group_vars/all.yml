@@ -10,3 +10,6 @@ db_name: scatar
 db_user: scatar
 
 db_password: scatar
+
+# Версия Node.js
+node_version: "7.10.0"
