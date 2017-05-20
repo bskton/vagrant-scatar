@@ -1,0 +1,6 @@
+www/
+.idea/
+ansible/*.retry
+ansible/*.dev.yml
+vagrant/.vagrant/
+vagrant/*.log

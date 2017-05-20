@@ -1,0 +1,12 @@
+# Имя пользователя с административными правами
+admin_user: vagrant
+
+# Директория для сайта
+site_root: /home/{{ admin_user }}/www
+
+# База данных сайта
+db_name: scatar
+
+db_user: scatar
+
+db_password: scatar

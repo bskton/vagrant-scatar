@@ -1,0 +1,11 @@
+---
+- hosts: scatar
+  remote_user: "{{ admin_user }}"
+  become: yes
+  become_user: root
+  
+  roles:
+    - php
+    - composer
+    - mariadb
+    - samba
